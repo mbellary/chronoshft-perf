@@ -1,0 +1,17 @@
+[profile.release]
+# Include debug symbols in the release binary. 
+# This is crucial for profiling tools to resolve function names and line numbers.
+# A value of 1 includes line tables, a value of 2 includes full debug info.
+# Full debug info (2) is highly recommended for performance investigations.
+debug = 2
+
+# Enable Link-Time Optimization (LTO).
+# This allows LLVM to inline functions and optimize across different crates in your dependency tree,
+# resulting in faster binaries at the cost of longer compile times.
+lto = "thin"
+
+# Reduce the number of code generation units.
+# By default, Cargo splits code into multiple units to compile them in parallel.
+# Setting this to 1 forces the compiler to view the entire crate at once,
+# allowing for slightly better optimization opportunities.
+codegen-units = 1
